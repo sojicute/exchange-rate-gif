@@ -22,10 +22,29 @@ public class OpenExchangeRatesServiceImpl implements OpenExchangeRatesService {
     @Autowired
     private OpenExchangeRatesClient openExchangeRatesClient;
 
-
     @Override
     public String getTag(String code) {
-        return null;
+        if (code == null) {
+            return "error";
+        }
+
+        Double cr = getCurrentRateByCode(code);
+        Double pr = getPreviousRateByCode(code);
+
+        if (cr == null || pr == null) {
+            return "error";
+        }
+
+        switch (Double.compare(cr, pr)) {
+            case 1:
+                return "rich";
+            case 0:
+                return "balance";
+            case -1:
+                return "broke";
+            default:
+                return "error";
+        }
     }
 
     @Override
@@ -39,7 +58,7 @@ public class OpenExchangeRatesServiceImpl implements OpenExchangeRatesService {
         return openExchangeRatesClient.getHistoricalConversionRates(apiId, base, date);
     }
 
-
+    @Override
     public String getPreviousDate(Long timestamp) {
         String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date(timestamp));
         LocalDate localDate = LocalDate.parse(currentDate);
