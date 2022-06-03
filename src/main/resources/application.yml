@@ -10,6 +10,7 @@ giphy:
   api-key: jyiCro5uZ5kR2TmvXBIRHjJ5vvaSJIi6
   url: https://api.giphy.com/v1/gifs
   tag:
-    rich: rich
-    broke: broke
-
+    up: rich
+    down: broke
+    zero: balance
+    error: error

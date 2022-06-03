@@ -1,10 +1,14 @@
 package com.sojicute.exchangerategif.service;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sojicute.exchangerategif.client.GiphyClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Map;
 
 @Service
@@ -17,7 +21,7 @@ public class GiphyServiceImpl implements GiphyService {
     private GiphyClient giphyClient;
 
     @Override
-    public Map<String, String> getRandomGif(String tag) {
+    public JsonNode getRandomGif(String tag) {
         return giphyClient.getGiphyGif(api_key, tag);
     }
 }

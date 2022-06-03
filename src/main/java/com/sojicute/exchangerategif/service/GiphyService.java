@@ -1,7 +1,9 @@
 package com.sojicute.exchangerategif.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import java.util.Map;
 
 public interface GiphyService {
-    Map<String, String> getRandomGif(String tag);
+    JsonNode getRandomGif(String tag);
 }

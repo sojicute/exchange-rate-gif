@@ -33,6 +33,18 @@ class OpenExchangeRatesServiceImplTest {
 
     private final String apiId = "";
 
+    @Value("${giphy.tag.up}")
+    private String up;
+
+    @Value("${giphy.tag.down}")
+    private String down;
+
+    @Value("${giphy.tag.zero}")
+    private String zero;
+
+    @Value("${giphy.tag.error}")
+    private String error;
+
     @Autowired
     private OpenExchangeRatesClient openExchangeRatesClient;
 
@@ -87,32 +99,32 @@ class OpenExchangeRatesServiceImplTest {
         assertEquals(0.938853, cr.getRates().get("EUR"), "Должен вернуть корректный курс валюты");
     }
 
-    @DisplayName("Тест должен вернуть тег 'rich'")
+    @DisplayName("Тест должен вернуть тег 'up'")
     @Test
-    void shouldReturnTagRich_getTag() {
+    void shouldReturnUp_getTag() {
         String tag = openExchangeRatesService.getTag("ALL");
-        assertEquals(tag, "rich");
+        assertEquals(tag, up);
     }
 
-    @DisplayName("Тест должен вернуть тег 'broke'")
+    @DisplayName("Тест должен вернуть тег 'down'")
     @Test
-    void shouldReturnTagBroke_getTag() {
+    void shouldReturnDown_getTag() {
         String tag = openExchangeRatesService.getTag("AMD");
-        assertEquals(tag, "broke");
+        assertEquals(tag, down);
     }
 
-    @DisplayName("Тест должен вернуть тег 'balance'")
+    @DisplayName("Тест должен вернуть тег 'zero'")
     @Test
-    void shouldReturnTagBalance_getTag() {
+    void shouldReturnZero_getTag() {
         String tag = openExchangeRatesService.getTag("AED");
-        assertEquals(tag, "balance");
+        assertEquals(tag, zero);
     }
 
     @DisplayName("Тест должен вернуть тег 'error'")
     @Test
-    void shouldReturnTagError_getTag() {
+    void shouldReturnError_getTag() {
         String tag = openExchangeRatesService.getTag("INVALID CODE");
-        assertEquals(tag, "error");
+        assertEquals(tag, error);
     }
 
     @DisplayName("Тест должен вернуть корректную дату предыдущего дня")

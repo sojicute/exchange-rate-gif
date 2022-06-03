@@ -19,31 +19,43 @@ public class OpenExchangeRatesServiceImpl implements OpenExchangeRatesService {
     @Value("${openexchangerates.api-key}")
     private String apiId;
 
+    @Value("${giphy.tag.up}")
+    private String up;
+
+    @Value("${giphy.tag.down}")
+    private String down;
+
+    @Value("${giphy.tag.zero}")
+    private String zero;
+
+    @Value("${giphy.tag.error}")
+    private String error;
+
     @Autowired
     private OpenExchangeRatesClient openExchangeRatesClient;
 
     @Override
     public String getTag(String code) {
         if (code == null) {
-            return "error";
+            return error;
         }
 
         Double cr = getCurrentRateByCode(code);
         Double pr = getPreviousRateByCode(code);
 
         if (cr == null || pr == null) {
-            return "error";
+            return error;
         }
 
         switch (Double.compare(cr, pr)) {
             case 1:
-                return "rich";
+                return up;
             case 0:
-                return "balance";
+                return zero;
             case -1:
-                return "broke";
+                return down;
             default:
-                return "error";
+                return error;
         }
     }
 
