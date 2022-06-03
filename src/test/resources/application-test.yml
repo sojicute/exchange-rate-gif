@@ -1,0 +1,16 @@
+
+# Openexchangerates
+openexchangerates:
+  api-key: 85beb06e4c9149fdb2243fcd9c92a9f0
+  url: https://openexchangerates.org/api
+  base: USD
+
+# Giphy
+giphy:
+  api-key: jyiCro5uZ5kR2TmvXBIRHjJ5vvaSJIi6
+  url: https://api.giphy.com/v1/gifs
+  tag:
+    rich: rich
+    broke: broke
+
+
