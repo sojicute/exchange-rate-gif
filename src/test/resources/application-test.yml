@@ -12,7 +12,7 @@ giphy:
   tag:
     up: rich
     down: broke
-    zero: balance
+    zero: strong
     error: error
 
 

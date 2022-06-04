@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Locale;
+
 @RestController
 @RequestMapping("/api/")
 public class MainController {
@@ -27,6 +29,7 @@ public class MainController {
 
     @GetMapping("/rate/{code}")
     ResponseEntity<JsonNode> getRate(@PathVariable("code") String code) {
+        code = code.toUpperCase(Locale.ROOT);
         String tag = openExchangeRatesService.getTag(code);
         JsonNode gif = giphyService.getRandomGif(tag);
         return new ResponseEntity<>(gif, HttpStatus.OK);
