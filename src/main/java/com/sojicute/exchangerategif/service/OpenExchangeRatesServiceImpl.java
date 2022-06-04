@@ -38,8 +38,13 @@ public class OpenExchangeRatesServiceImpl implements OpenExchangeRatesService {
     @Value("${giphy.tag.error}")
     private String error;
 
+
+    private final OpenExchangeRatesClient openExchangeRatesClient;
+
     @Autowired
-    private OpenExchangeRatesClient openExchangeRatesClient;
+    public OpenExchangeRatesServiceImpl(OpenExchangeRatesClient openExchangeRatesClient) {
+        this.openExchangeRatesClient = openExchangeRatesClient;
+    }
 
     /**
      * Метод сравниваниет актуальный курс валюты с курсом валюты предыдущего дня

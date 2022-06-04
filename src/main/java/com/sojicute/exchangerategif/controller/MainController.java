@@ -15,15 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/")
 public class MainController {
 
-    @Autowired
-    private OpenExchangeRatesService openExchangeRatesService;
+    private final OpenExchangeRatesService openExchangeRatesService;
+
+    private final GiphyService giphyService;
 
     @Autowired
-    private GiphyService giphyService;
+    public MainController(OpenExchangeRatesService openExchangeRatesService, GiphyService giphyService) {
+        this.openExchangeRatesService = openExchangeRatesService;
+        this.giphyService = giphyService;
+    }
 
-
-    @GetMapping("/result/{code}")
-    ResponseEntity<JsonNode> getResultGif(@PathVariable("code") String code) {
+    @GetMapping("/rate/{code}")
+    ResponseEntity<JsonNode> getRate(@PathVariable("code") String code) {
         String tag = openExchangeRatesService.getTag(code);
         JsonNode gif = giphyService.getRandomGif(tag);
         return new ResponseEntity<>(gif, HttpStatus.OK);

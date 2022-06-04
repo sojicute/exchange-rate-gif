@@ -12,9 +12,19 @@ public class GiphyServiceImpl implements GiphyService {
     @Value("${giphy.api-key}")
     private String api_key;
 
-    @Autowired
-    private GiphyClient giphyClient;
+    private final GiphyClient giphyClient;
 
+    @Autowired
+    public GiphyServiceImpl(GiphyClient giphyClient) {
+        this.giphyClient = giphyClient;
+    }
+
+    /**
+     * Метод получает гиф по указаному тегу
+     *
+     * @param tag тег
+     * @return ответ с сервера в формате JsonNode
+     */
     @Override
     public JsonNode getRandomGif(String tag) {
         return giphyClient.getGiphyGif(api_key, tag);
