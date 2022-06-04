@@ -8,7 +8,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,11 +17,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -99,28 +97,28 @@ class OpenExchangeRatesServiceImplTest {
         assertEquals(0.938853, cr.getRates().get("EUR"), "Должен вернуть корректный курс валюты");
     }
 
-    @DisplayName("Тест должен вернуть тег 'up'")
+    @DisplayName("Тест должен вернуть 'up'")
     @Test
     void shouldReturnUp_getTag() {
         String tag = openExchangeRatesService.getTag("ALL");
         assertEquals(tag, up);
     }
 
-    @DisplayName("Тест должен вернуть тег 'down'")
+    @DisplayName("Тест должен вернуть 'down'")
     @Test
     void shouldReturnDown_getTag() {
         String tag = openExchangeRatesService.getTag("AMD");
         assertEquals(tag, down);
     }
 
-    @DisplayName("Тест должен вернуть тег 'zero'")
+    @DisplayName("Тест должен вернуть 'zero'")
     @Test
     void shouldReturnZero_getTag() {
         String tag = openExchangeRatesService.getTag("AED");
         assertEquals(tag, zero);
     }
 
-    @DisplayName("Тест должен вернуть тег 'error'")
+    @DisplayName("Тест должен вернуть 'error'")
     @Test
     void shouldReturnError_getTag() {
         String tag = openExchangeRatesService.getTag("INVALID CODE");

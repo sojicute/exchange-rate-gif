@@ -3,7 +3,6 @@ package com.sojicute.exchangerategif.model;
 import lombok.Data;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * Класс отвечает за хранения response обмена валюты
